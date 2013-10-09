@@ -4,7 +4,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('romuloigor', 'romuloigor@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -28,8 +28,8 @@ CACHES = {
     "default": {
         "BACKEND": "redis_cache.cache.RedisCache",
         #"LOCATION": "ec2-54-232-171-255.sa-east-1.compute.amazonaws.com:6379:1",
-        #"LOCATION": "ip-10-248-26-37.sa-east-1.compute.internal:6379:1",
-        "LOCATION": "10.248.26.37:6379:1",
+        #"LOCATION": "ip-10-248-115-185.sa-east-1.compute.internal:6379:1",
+        "LOCATION": "10.248.115.185:6379:1",
         "OPTIONS": {
             "CLIENT_CLASS": "redis_cache.client.DefaultClient",
         }
