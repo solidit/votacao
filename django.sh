@@ -2,7 +2,7 @@
 
 PROCESSNAME="fcgi"
 
-DJANGO_SETTINGS="votacao.settings"
+#DJANGO_SETTINGS="votacao.settings"
 
 FCGI_PATH="/opt/votacao/fcgi"
 FCGI_LOG="/opt/votacao/logs"
