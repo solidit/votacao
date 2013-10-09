@@ -2,11 +2,11 @@
 
 PROCESSNAME="fcgi"
 
-DJANGO_SETTINGS="myproject.settings"
+DJANGO_SETTINGS="votacao.settings"
 
-FCGI_PATH="/opt/myproject/fcgi"
-FCGI_LOG="/opt/myproject/logs"
-NGINX_PATH="/opt/myproject/nginx"
+FCGI_PATH="/opt/votacao/fcgi"
+FCGI_LOG="/opt/votacao/logs"
+NGINX_PATH="/opt/votacao/nginx"
 
 if [ ! -d $FCGI_PATH ]; then
   mkdir -p $FCGI_PATH
@@ -28,16 +28,16 @@ O=$FCGI_LOG/django_fcgi.outlog
 start(){
   sudo chmod -R 777 $FCGI_LOG
 
-  cd /opt/myproject && python manage.py runfcgi daemonize=true \
-                                                      maxchildren=10 \
-                                                      maxspare=5 \
-                                                      minspare=2 \
-                                                      method=prefork \
-                                                      socket=$S \
-                                                      pidfile=$P \
-                                                      errlog=$E \
-                                                      outlog=$O \
-                                                      --settings=$DJANGO_SETTINGS && chmod 777 $S
+  cd /opt/votacao && python manage.py runfcgi daemonize=true \
+                                              maxchildren=10 \
+                                              maxspare=5 \
+                                              minspare=2 \
+                                              method=prefork \
+                                              socket=$S \
+                                              pidfile=$P \
+                                              errlog=$E \
+                                              outlog=$O \
+                                              --settings=$DJANGO_SETTINGS && chmod 777 $S
 }
 
 stop(){

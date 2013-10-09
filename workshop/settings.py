@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/romuloigor/workspace/workshop.db', # Or path to database file if using sqlite3.
+        'NAME': '/opt/votacao/workshop.db', # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -21,10 +21,15 @@ DATABASES = {
     }
 }
 
+
+#https://django-redis.readthedocs.org/en/latest/
+#pip install django-redis
 CACHES = {
     "default": {
         "BACKEND": "redis_cache.cache.RedisCache",
-        "LOCATION": "ec2-54-232-171-255.sa-east-1.compute.amazonaws.com:6379:1",
+        #"LOCATION": "ec2-54-232-171-255.sa-east-1.compute.amazonaws.com:6379:1",
+        #"LOCATION": "ip-10-248-26-37.sa-east-1.compute.internal:6379:1",
+        "LOCATION": "10.248.26.37:6379:1",
         "OPTIONS": {
             "CLIENT_CLASS": "redis_cache.client.DefaultClient",
         }
@@ -71,7 +76,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/opt/votacao/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
