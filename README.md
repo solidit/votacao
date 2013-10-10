@@ -32,18 +32,19 @@ Web Service de votação usado no Workshop Amazon AWS ( Python/Django com Redis 
 ### Consultar as configuracoes existentes
 
     $ as-describe-launch-configs --region sa-east-1
-    $ as-delete-launch-config WSlc --region sa-east-1
-    $ as-create-launch-config votacaolc --image-id ami-410daa5c --instance-type t1.micro --key workshop --group workshop --region sa-east-1
+    $ as-delete-launch-config votacaolc --region sa-east-1
+    $ as-create-launch-config votacaolc --image-id ami-cf0daad2 --instance-type m1.large --key workshop --group workshop --region sa-east-1
 
 ### Configurar os autoscalings groups
 
     $ as-describe-auto-scaling-groups --region sa-east-1
     $ as-delete-auto-scaling-group votacaogroup --force-delete --region sa-east-1
-    $ as-create-auto-scaling-group votacaogroup --availability-zones sa-east-1a --launch-configuration votacaolc --load-balancers votacao --max-size 10 --min-size 1 –-tag “k=Name, v=votacao” --region sa-east-1
+    $ as-create-auto-scaling-group votacaogroup --availability-zones sa-east-1a --launch-configuration votacaolc --load-balancers votacao --max-size 10 --min-size 1 --region sa-east-1
+    $ as-create-or-update-tags votacaogroup --tag "id=votacaogroup, t=auto-scaling-group, k=Name, v=WS-Votacao, p=true" --region sa-east-1
 
 ### Criando politicas de UpScale
 
-    $ as-put-scaling-policy votacaoUpPolicy --auto-scaling-group votacaogroup --adjustment=1 --type ChangeInCapacity --cooldown 300 --region sa-east-1
+    $ as-put-scaling-policy votacaoUpPolicy --auto-scaling-group votacaogroup --adjustment=2 --type ChangeInCapacity --cooldown 300 --region sa-east-1
 
 ### Criando politicas de DownScale
 

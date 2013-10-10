@@ -12,7 +12,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        #'NAME': '/Users/romuloigor/workspace/workshop/workshop.db', # Or path to database file if using sqlite3.
         'NAME': '/opt/votacao/workshop.db', # Or path to database file if using sqlite3.
+        
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -27,9 +29,8 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "redis_cache.cache.RedisCache",
-        #"LOCATION": "ec2-54-232-171-255.sa-east-1.compute.amazonaws.com:6379:1",
-        #"LOCATION": "ip-10-248-115-185.sa-east-1.compute.internal:6379:1",
-        "LOCATION": "10.248.115.185:6379:1",
+        "LOCATION": "54.232.176.103:6379:1",
+        #"LOCATION": "127.0.0.1:6379:1",
         "OPTIONS": {
             "CLIENT_CLASS": "redis_cache.client.DefaultClient",
         }
@@ -143,6 +144,8 @@ INSTALLED_APPS = (
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+PISTON_DISPLAY_ERRORS = True
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
